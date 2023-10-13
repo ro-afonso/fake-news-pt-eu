@@ -9,9 +9,9 @@ The diagram below depicts the project's pipeline, with the two English and Europ
 
 ## European Portuguese Dataset
 
-It has over 60 000 rows with news articles and statements extracted through Web Scraping.
+The dataset has over 60 000 rows with news articles and statements extracted through Web Scraping.
 
-The dataset is comprised of 4 columns: Text (news title and body merged together), Label (0 for fake, 1 for real), Source and URL.
+It is comprised of 4 columns: Text (news title and body merged together), Label (0 for fake, 1 for real), Source and URL.
 
 The Source column was added because many fake news websites love to promote articles from other fake news websites, which means not all news present on a given website belong to it.
 
