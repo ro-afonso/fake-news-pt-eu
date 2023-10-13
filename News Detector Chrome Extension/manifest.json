@@ -1,0 +1,17 @@
+{
+    "name": "Fake News Detector",
+    "version": "1.0",
+    "minimum_chrome_version": "10.0",
+    "description": "Extension Test",
+    "manifest_version": 3,
+    "author": "Me, of course!",
+    "permissions": ["activeTab", "tabs", "scripting"],
+    "host_permissions": ["*://*/*", "<all_urls>"],
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Fake News Detector"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
