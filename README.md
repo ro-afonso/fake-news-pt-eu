@@ -25,7 +25,7 @@ The best models for the English and European Portuguese approach were BERT (0.96
 
 The distilled version of the English BERT model is available [here](https://drive.google.com/file/d/1UNbhCPbJk_-mmc-nsf9Ag0a7UIIBaSnu/view?usp=sharing).
 
-The European Portuguese XGBoost model is available [here](). Since the AWS EC2 instance of the Free Tier used in the project only has 1 GB of RAM, this model couldn't be used. To solve this issue, another distilBERT model was trained, this time with the European Portuguese data, with an F1-score of 0.92. The model is available [here](https://drive.google.com/file/d/1mnFrT7LpFtNkxb1SoiuReGGTNmOUMnTJ/view?usp=sharing).
+The European Portuguese XGBoost model is available [here](https://drive.google.com/file/d/1-9-YE54klQOXPqCfmMQZ2z93QqwfXW0Z/view?usp=sharing). Since the AWS EC2 instance of the Free Tier used in the project only has 1 GB of RAM, this model couldn't be used. To solve this issue, another distilBERT model was trained, this time with the European Portuguese data, with an F1-score of 0.92. The model is available [here](https://drive.google.com/file/d/1mnFrT7LpFtNkxb1SoiuReGGTNmOUMnTJ/view?usp=sharing).
 
 ## Applications Development and Deployment
 
