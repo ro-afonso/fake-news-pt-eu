@@ -5,8 +5,6 @@ Based on the coducted search, this is the first dataset with fake and real news 
 
 The diagram below depicts the project's pipeline, with the two English and European Portuguese approaches:
 
-![Complete Pipeline](https://github.com/ro-afonso/fake-news-pt-eu/assets/93609933/4d48f6b2-0ecc-4fcd-a233-c2a9b585ce65)
-
 ## European Portuguese Dataset
 
 The dataset has over 60 000 rows with news articles and statements extracted through Web Scraping.
@@ -30,8 +28,6 @@ The European Portuguese XGBoost model is available [here](https://drive.google.c
 ## Applications Development and Deployment
 
 To put the ML and DL models into action, the system shown below was developed:
-
-![App development and deployment diagram](https://github.com/ro-afonso/fake-news-pt-eu/assets/93609933/aade6d7c-3b5f-4cb9-95e6-d69dbea40f75)
 
 A Chrome extension and Android application communicate with a Flask app ran on a docker container inside an AWS EC2 instance, which allows users to check whether a given text is real or fake through POST and GET requests.
 
