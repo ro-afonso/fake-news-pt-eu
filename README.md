@@ -35,6 +35,8 @@ Users can also report fake or real news, which are then processed in a script ra
 
 The models are fine-tuned with the feedback data and then sent over to the cloud instance through Secure Shell (SSH) and Secure File Transfer Protocol (SFTP) commands, as well as a POST request which allows the Flask app to replace the old models with the improved ones.
 
+The Chrome extension can be added [here](https://chromewebstore.google.com/detail/fake-news-detector/ccflafojkdphjeeblbekbfkkihcbobef).
+
 ## Get the project running
 
 To deploy the Flask app on the cloud and try it out, I recommend following [this tutorial](https://towardsdatascience.com/simple-way-to-deploy-machine-learning-models-to-cloud-fd58b771fdcf). A few changes will be required, naturally.
