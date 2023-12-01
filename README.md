@@ -29,13 +29,11 @@ The European Portuguese XGBoost model is available [here](https://drive.google.c
 
 To put the ML and DL models into action, the system shown below was developed:
 
-A Chrome extension and Android application communicate with a Flask app ran on a docker container inside an AWS EC2 instance, which allows users to check whether a given text is real or fake through POST and GET requests.
+A Chrome extension and Android application communicate with a Flask app ran on a docker container inside an AWS EC2 instance, which allows users to check whether a given text is real or fake through POST and GET requests. The Chrome extension is available [here](https://chromewebstore.google.com/detail/fake-news-detector/ccflafojkdphjeeblbekbfkkihcbobef).
 
 Users can also report fake or real news, which are then processed in a script ran on a local computer with a dedicated Graphical Processing Unit (GPU).
 
 The models are fine-tuned with the feedback data and then sent over to the cloud instance through Secure Shell (SSH) and Secure File Transfer Protocol (SFTP) commands, as well as a POST request which allows the Flask app to replace the old models with the improved ones.
-
-The Chrome extension can be added [here](https://chromewebstore.google.com/detail/fake-news-detector/ccflafojkdphjeeblbekbfkkihcbobef).
 
 ## Get the project running
 
