@@ -1,9 +1,11 @@
 # fake-news-pt-eu
-This project was developed to contribute to the fight against fake news, with a stronger focus on the European Portuguese language.
+This project was developed to contribute to the fight against fake news, with a stronger focus on the European Portuguese language. If you find this repository useful, please cite it in your work, alongside [our paper](https://doi.org/10.1109/TLA.2024.10472958).
 
-Based on the coducted search, this is the first dataset with fake and real news in European Portuguese publicly available ever.
+Based on the conducted search, this is the first dataset with fake and real news in European Portuguese publicly available.
 
 The diagram below depicts the project's pipeline, with the two English and European Portuguese approaches:
+
+![Complete Pipeline](https://github.com/ro-afonso/fake-news-pt-eu/assets/93609933/b40a6d84-578d-4bb4-b101-bbf29da21cb2)
 
 ## European Portuguese Dataset
 
@@ -11,11 +13,11 @@ The dataset has over 60 000 rows with news articles and statements extracted thr
 
 It is comprised of 4 columns: Text (news title and body merged together), Label (0 for fake, 1 for real), Source and URL.
 
-The Source column was added because many fake news websites love to promote articles from other fake news websites, which means not all news present on a given website belong to it.
+The Source column was added because many fake news websites love to promote articles from other fake news websites, which means not all articles present on a given website belong to it.
 
 All the fact-checks also had the source behind the statement being fact-checked, which varied from individuals like politicians or celebrities to social media as a whole.
 
-The Web Scrapers used to gather the data are also available, alongside many python notebooks with different classification models and techniques.
+The Web Scrapers used to gather the data are also available, alongside many Python notebooks with different classification models and techniques.
 
 ## Best Machine Learning and Deep Learning models
 
@@ -27,11 +29,13 @@ The European Portuguese XGBoost model is available [here](https://drive.google.c
 
 ## Applications Development and Deployment
 
-To put the ML and DL models into action, the system shown below was developed:
+To put the ML and DL models into action, the following system was developed:
 
-A Chrome extension and Android application communicate with a Flask app ran on a docker container inside an AWS EC2 instance, which allows users to check whether a given text is real or fake through POST and GET requests.
+![App development and deployment diagram github](https://github.com/ro-afonso/fake-news-pt-eu/assets/93609933/9541a82a-d472-4c47-92b2-6da7b1b85909)
 
-Users can also report fake or real news, which are then processed in a script ran on a local computer with a dedicated Graphical Processing Unit (GPU).
+A Chrome extension and Android application communicate with a Flask app run on a docker container inside an AWS EC2 instance, which allows users to check whether a given text is real or fake through POST and GET requests.
+
+Users can also report fake or real news articles, which are then processed in a script run on a local computer with a dedicated Graphical Processing Unit (GPU).
 
 The models are fine-tuned with the feedback data and then sent over to the cloud instance through Secure Shell (SSH) and Secure File Transfer Protocol (SFTP) commands, as well as a POST request which allows the Flask app to replace the old models with the improved ones.
 
