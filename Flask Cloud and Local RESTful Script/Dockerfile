@@ -2,7 +2,7 @@
 FROM python:3.8
 
 # Install the required packages
-RUN pip install --no-cache-dir transformers==4.31.0 Flask==2.3.2 Flask-Cors==4.0.0 tensorflow==2.10.0
+RUN pip install --no-cache-dir transformers==4.31.0 Flask==2.3.2 Flask-Cors==4.0.0 flask-talisman tensorflow==2.10.0
 RUN pip install gunicorn
 
 # Install a Rust compiler to use the tokenizers
@@ -21,6 +21,7 @@ WORKDIR /app
 
 # Expose the necessary port
 EXPOSE 80
+EXPOSE 443
 
 # Run the Flask app with Gunicorn
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:80", "Flask_app_optimized:app"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:80", "--certfile", "/etc/ssl/certs/fullchain.pem", "--keyfile", "/etc/ssl/certs/privkey.pem", "-b", "0.0.0.0:443", "Flask_app_optimized:app"]

@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    image: fake-news-app
+    container_name: fake-news-cont
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount the real cert files from /archive/ instead of symlinks from /live/
+      # Replace YOUR-DOMAIN with your paid domain or your EC2 IP and nip.io (for example, 01-23-456-789.nip.io)
+      - /etc/letsencrypt/archive/YOUR-DOMAIN/fullchain1.pem:/etc/ssl/certs/fullchain.pem:ro
+      - /etc/letsencrypt/archive/YOUR-DOMAIN/privkey1.pem:/etc/ssl/certs/privkey.pem:ro
+      - /home/ec2-user/:/app  # Ensures the fine-tuned models in the host directory are loaded into the container
+    restart: always  # This ensures the container is automatically restarted if it crashes or the server reboots

@@ -8,9 +8,11 @@ from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 import os
 import json
+from flask_talisman import Talisman
 
 # Initialize the Flask application
 app = Flask(__name__)
+Talisman(app, content_security_policy=None)
 CORS(app)
 
 # Load the TFLite model or the fine-tuned version if it exists
@@ -206,9 +208,3 @@ def load_improved_portuguese_model():
         return jsonify({'message': 'Improved portuguese model loaded successfully!', 'success': True})
     except:
         return jsonify({'message': 'Improved portuguese model not found!', 'success': True})
-
-if __name__ == '__main__':
-    # Use Gunicorn to run the Flask app, using two workers given the two cpu cores available in the ec2 instance
-    gunicorn_command = "gunicorn -w 2 -b 0.0.0.0:80 Flask_app_optimized:app"
-    os.system(gunicorn_command)
-    #app.run(host='0.0.0.0', port=80)

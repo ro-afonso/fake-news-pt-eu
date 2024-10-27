@@ -29,7 +29,7 @@ async function fetchData() {
         },
         body: JSON.stringify(data),
       };
-      const response = await fetch("CLOUD-IP:80/feedback", options); //Adapt CLOUD-IP
+      const response = await fetch("CLOUD-IP/feedback", options); //Replace CLOUD-IP with your full domain (for example, https://01-23-456-789.nip.io)
 
       if (!response.ok) {
         throw new Error("Failed to fetch");
@@ -51,7 +51,7 @@ async function fetchData() {
         body: JSON.stringify(data),
       };
 
-      const response = await fetch("CLOUD-IP:80/predict", options); //Adapt CLOUD-IP
+      const response = await fetch("CLOUD-IP/predict", options); //Replace CLOUD-IP with your full domain (for example, https://01-23-456-789.nip.io)
 
       if (!response.ok) {
         throw new Error("Failed to fetch");
@@ -139,16 +139,18 @@ document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-document.getElementById("modeSwitch").addEventListener("click", () => {
+document.getElementById("modeSwitch").addEventListener("click", (e) => {
   switchMode();
+  e.preventDefault();
 });
 
 // Establish a connection with the background script
 const port = chrome.runtime.connect({ name: 'popupConnection' });
 
-document.getElementById("autofillButton").addEventListener("click", async () => {
+document.getElementById("autofillButton").addEventListener("click", async (e) => {
   // Notify the background script that the popup is ready to receive data
   port.postMessage({ type: 'ready' });
+  e.preventDefault();
 });
 
 port.onMessage.addListener(message => {

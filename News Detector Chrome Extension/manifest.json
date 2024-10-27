@@ -5,8 +5,7 @@
     "description": "Extension Test",
     "manifest_version": 3,
     "author": "Me, of course!",
-    "permissions": ["activeTab", "tabs", "scripting"],
-    "host_permissions": ["*://*/*", "<all_urls>"],
+    "permissions": ["activeTab", "scripting"],
     "action": {
         "default_popup": "index.html",
         "default_title": "Fake News Detector"

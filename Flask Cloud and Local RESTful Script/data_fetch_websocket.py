@@ -470,7 +470,7 @@ def fetch_user_feedback_data():
     while True:
         try:
             print("Fetching data...")
-            response = requests.get('CLOUD-IP:80/fetch_feedback') # Replace CLOUD-IP with public IP of the cloud instance
+            response = requests.get('CLOUD-IP/fetch_feedback') # Replace CLOUD-IP with your full domain (for example, https://01-23-456-789.nip.io)
             if response.status_code == 200:
                 data = response.json()
                 feedback_data = data['feedback_data']
@@ -483,7 +483,7 @@ def fetch_user_feedback_data():
                         success = send_model_to_ec2(fine_tuned_model_path)
                         if success:
                             #Send request to flask to load new fine-tuned model
-                            response = requests.post('CLOUD-IP:80/load_fine_tuned_model') # Replace CLOUD-IP with public IP of the cloud instance
+                            response = requests.post('CLOUD-IP/load_fine_tuned_model') # Replace CLOUD-IP with your full domain (for example, https://01-23-456-789.nip.io)
                             print(response.json()['message'])
                         else:
                             print("Failed sending the fine-tuned model to ec2!")
@@ -495,7 +495,7 @@ def fetch_user_feedback_data():
                         success = send_model_to_ec2(fine_tuned_model_path)
                         if success:
                             #Send request to flask to load new fine-tuned model
-                            response = requests.post('CLOUD-IP:80/load_improved_portuguese_model') # Replace CLOUD-IP with public IP of the cloud instance
+                            response = requests.post('CLOUD-IP/load_improved_portuguese_model') # Replace CLOUD-IP with your full domain (for example, https://01-23-456-789.nip.io)
                             print(response.json()['message'])
                         else:
                             print("Failed sending the fine-tuned model to ec2!")
