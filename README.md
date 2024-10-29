@@ -93,10 +93,10 @@ Download the repository files and follow the steps below to set up and deploy th
       * `sudo yum install certbot`
   13. Once installed, run the following command to create your free SSL certificate with certbot:
       * `sudo certbot certonly --standalone -d YOUR-DOMAIN`
-      * As mentioned before, use your EC2 IP with nip.io, for example, 01-23-456-789.nip.io, or a paid domain if you own one
+      * As mentioned before, use a paid domain or your EC2 IP with nip.io (for example, 01-23-456-789.nip.io)
   14. Follow the instructions on the terminal to create your certificate. Once finished, run the following command to check if the certificate was created successfully:
       * `sudo certbot certificates`
-  15. The certificate is only valid for 90 days, but it can be renewed with cron jobs. To do this, run `sudo yum install cronie` 
+  15. The certificate is only valid for 90 days, but it can be renewed. Start by running `sudo yum install cronie` 
   16. Open the editor with vim by running `sudo crontab -e`
   17. Type "i" to enter "insert mode" and paste the following command:
       * `0 */12 * * * certbot renew --quiet --post-hook "docker restart fake-news-cont"`
@@ -112,10 +112,12 @@ Download the repository files and follow the steps below to set up and deploy th
   21. Create and deploy your Docker container with Gunicorn by running the following command:
       * `docker-compose up -d`
   22. With the container running, the Flask app is ready to use. A message will also be displayed by the Flask app when you visit your domain in a web browser
-  23. To get a prediction for a given news article, send a POST request using the following PowerShell command in VS Code. Change the text and language fields as desired and do not forget to adapt the "-Uri" property to your full domain (for example, https://01-23-456-789.nip.io):
+  23. To get a prediction for a given news article, send a POST request using the following PowerShell command in VS Code:
       * `Invoke-RestMethod -Method POST -Uri "YOUR-FULL-DOMAIN/predict" -Headers @{"Content-Type" = "application/json"} -Body '{"text": "Your news article to predict here", "language" : "english"}'`
+      * Adapt the command by changing the text, language, and full domain (for example, https://01-23-456-789.nip.io)
   24. You can also report news articles in the feedback mode by running the following PowerShell command:
       * `Invoke-RestMethod -Method POST -Uri "YOUR-FULL-DOMAIN/feedback" -Headers @{"Content-Type" = "application/json"} -Body '{"text": "Report news article here" , "label" : "0", "language" : "english"}'`
+      * Adapt the command by changing the text, language, and full domain (for example, https://01-23-456-789.nip.io)
 
 ### Chrome Extension
 
