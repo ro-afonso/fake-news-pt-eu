@@ -57,12 +57,12 @@ The Chrome extension is available [here](https://chromewebstore.google.com/detai
 
 ## System Setup
 
-Follow the steps below to set up and deploy the system:
+Download the repository files and follow the steps below to set up and deploy the system:
 
 ### AWS EC2 with Containerised Flask App
 
   1. After creating your AWS account, navigate to the EC2 dashboard
-  2. Create a pem file to use as the key pair, name it "fake-news-app.pem", and save it in the "Flask Cloud and Local RESTful Script" local folder
+  2. Create a pem file to use as the key pair, name it "fake-news-demo.pem", and save it in the "Flask Cloud and Local RESTful Script" local folder
   3. Launch a new EC2 instance using the following free tier eligible offers and specifications:
      * Select the "Amazon Linux 2023 AMI" as the AMI
      * Select either "t3.micro" or "t3.nano" as the instance type (varies with region)
@@ -70,9 +70,9 @@ Follow the steps below to set up and deploy the system:
      * Allow SSH, HTTP, and HTTPS traffic
      * Select 15 GBs of gp3 storage
   4. After launching the EC2 instance, you need to ensure the key is not publicly viewable. To do this, open PowerShell or CMD on your local pc, set the "Flask Cloud and Local RESTful Script" folder path, and run the following command:
-     * `chmod 400 fake-news-app.pem` 
+     * `chmod 400 fake-news-demo.pem` 
   5. Connect to your EC2 instance using your Public IPv4 DNS and the command below:
-     * `ssh -i fake-news-app.pem ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS`
+     * `ssh -i fake-news-demo.pem ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS`
   6. Once connected, run the following commands to install Docker in EC2:
      * `sudo yum install docker`
      * `sudo service docker start`
@@ -83,11 +83,11 @@ Follow the steps below to set up and deploy the system:
   9. Change the domain used in the first two directories of the "volumes" section. You can either use a paid domain if you own one or create a domain for free with your EC2 IP address and nip.io
       * For example, if your EC2 IP is 01.23.456.789 then your domain would be 01-23-456-789.nip.io (only for testing purposes, not recommended in production)
   10. Send a copy of all Docker, python, and tflite files inside the "Flask Cloud and Local RESTful Script" folder using the following commands:
-      * `scp -i fake-news-app.pem NEW_mobile_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
-      * `scp -i fake-news-app.pem mobile_portuguese_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
-      * `scp -i fake-news-app.pem Dockerfile ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
-      * `scp -i fake-news-app.pem Flask_app_optimized.py ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
-      * `scp -i fake-news-app.pem docker-compose.yml ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
+      * `scp -i fake-news-demo.pem NEW_mobile_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
+      * `scp -i fake-news-demo.pem mobile_portuguese_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
+      * `scp -i fake-news-demo.pem Dockerfile ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
+      * `scp -i fake-news-demo.pem docker-compose.yml ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
+      * `scp -i fake-news-demo.pem Flask_app_optimized.py ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
   11. Connect to EC2 and run `ls` to confirm that all files were transferred successfully
   12. It is advised to use https instead of the default and less secure http connection in your Flask App. To do this, install certbot by running the command below:
       * `sudo yum install certbot`
