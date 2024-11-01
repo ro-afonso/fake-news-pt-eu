@@ -131,9 +131,8 @@ Download the repository files and follow the steps below to set up and deploy th
   2. Change the "BASE_URL" value to your full domain (for example, https://01-23-456-789.nip.io)
   3. Create a new file under "Gradle Scripts" and name it "local.properties". Add the variable below to set your SDK path using your user:
      * `sdk.dir=C\:\\Users\\YOUR-USER\\AppData\\Local\\Android\\Sdk`
-  4. Build the project to assign the SDK path.
-  5. Open the "File" tab and select "Sync Project with Gradle Files" to allow the project to be run using the required dependencies and configurations
-  6. Run the app to install and test it on the simulator or your own device connected via USB (the latter requires developer options turned on)
+  4. Open the "File" tab and select "Sync Project with Gradle Files" to reload the project using the required dependencies and configurations
+  5. Run the app to install and test it on the simulator or your own device connected via USB (the latter requires developer options turned on)
 
 ### RESTful Script for Model Improvement
 
