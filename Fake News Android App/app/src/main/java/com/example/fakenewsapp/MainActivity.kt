@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.submitButton.setOnClickListener {
             if (binding.inputEditText.text.toString().isNotEmpty()){
                 val inputText = binding.inputEditText.text.toString()
+                binding.predictionTextView.text = ""
                 predictFakeNews(inputText)
             }
             else{

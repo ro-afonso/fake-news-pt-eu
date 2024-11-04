@@ -435,7 +435,7 @@ def send_model_to_ec2(fine_tuned_model_path):
     # Specify EC2 instance variables for the SSH connection
     ec2_instance_ip = 'ec2-??-???-???-???.eu-north-1.compute.amazonaws.com'
     ec2_user = 'ec2-user'
-    pem_file_path = 'cloud-instance-pem.pem'
+    pem_file_path = 'fake-news-demo.pem'
     try:
         print("Begin!")
         # Establish an SSH connection to the EC2 instance
