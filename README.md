@@ -46,18 +46,17 @@ Users can also report fake or real news articles, which are then processed in a 
 
 The models are fine-tuned with the feedback data and then sent over to the cloud instance through Secure Shell (SSH) and Secure File Transfer Protocol (SFTP) commands, as well as a POST request which allows the Flask app to replace the old models with the improved ones.
 
-The Chrome extension is available [here](https://chromewebstore.google.com/detail/fake-news-detector/ccflafojkdphjeeblbekbfkkihcbobef).
-
 ## Requirements
 
 * [VS Code](https://code.visualstudio.com/) or a similar code editor
-* [Anaconda](https://www.anaconda.com/download/success)
 * [AWS Account](https://aws.amazon.com/free) (1 Year Free Tier)
+* [Anaconda](https://www.anaconda.com/download/success)
 * [Android Studio](https://developer.android.com/studio)
+* [GitHub Desktop](https://github.com/apps/desktop)
 
 ## System Setup
 
-Download the repository files and follow the steps below to set up and deploy the system:
+Clone the repository with GitHub Desktop and follow the steps below to set up and deploy the system:
 
 ### AWS EC2 with Containerised Flask App
 
@@ -82,7 +81,7 @@ Download the repository files and follow the steps below to set up and deploy th
      * This will be used alongside the Dockerfile to mount volumes so that the Flask app can access the ML and DL models within the Docker container
   9. Change the domain used in the first two directories of the "volumes" section. You can either use a paid domain if you own one or create a domain for free with your EC2 IP address and nip.io
       * For example, if your EC2 IP is 01.23.456.789 then your domain would be 01-23-456-789.nip.io (only for testing purposes, not recommended in production)
-  10. Send a copy of all Docker, python, and tflite files inside the "Flask Cloud and Local RESTful Script" folder using the following commands:
+  10. Send a copy of all Docker, Python, and TFLite files inside the "Flask Cloud and Local RESTful Script" folder using the following commands:
       * `scp -i fake-news-demo.pem NEW_mobile_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
       * `scp -i fake-news-demo.pem mobile_portuguese_distilBERT_optimized.tflite ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
       * `scp -i fake-news-demo.pem Dockerfile ec2-user@YOUR-EC2-PUBLIC-IPv4-DNS:/home/ec2-user`
@@ -97,7 +96,7 @@ Download the repository files and follow the steps below to set up and deploy th
   14. Follow the instructions on the terminal to create your certificate. Once finished, run the following command to check if the certificate was created successfully:
       * `sudo certbot certificates`
   15. The certificate is only valid for 90 days, but it can be renewed. Start by running `sudo yum install cronie` 
-  16. Open the editor with vim by running `sudo crontab -e`
+  16. Open the editor with Vim by running `sudo crontab -e`
   17. Type "i" to enter "insert mode" and paste the following command:
       * `0 */12 * * * certbot renew --quiet --post-hook "docker restart fake-news-cont"`
       * This cron job runs every day at midday and midnight to renew the certificate if its expiration date is close. The Docker container is then restarted automatically to apply the new certificate
@@ -114,10 +113,10 @@ Download the repository files and follow the steps below to set up and deploy th
   22. With the container running, the Flask app is ready to use. A message will also be displayed by the Flask app when you visit your domain in a web browser
   23. To get a prediction for a given news article, send a POST request using the following PowerShell command in VS Code:
       * `Invoke-RestMethod -Method POST -Uri "YOUR-FULL-DOMAIN/predict" -Headers @{"Content-Type" = "application/json"} -Body '{"text": "Your news article to predict here", "language" : "english"}'`
-      * Adapt the command by changing the text, language, and full domain (for example, https://01-23-456-789.nip.io)
+      * Change the text, language, and full domain (for example, https://01-23-456-789.nip.io)
   24. You can also report news articles in the feedback mode by running the following PowerShell command:
       * `Invoke-RestMethod -Method POST -Uri "YOUR-FULL-DOMAIN/feedback" -Headers @{"Content-Type" = "application/json"} -Body '{"text": "Report news article here" , "label" : "0", "language" : "english"}'`
-      * Adapt the command by changing the text, language, and full domain (for example, https://01-23-456-789.nip.io)
+      * Change the text, label, language, and full domain (for example, https://01-23-456-789.nip.io)
 
 ### Chrome Extension
 
@@ -129,29 +128,34 @@ Download the repository files and follow the steps below to set up and deploy th
 
   1. Open the "Fake News Android App" folder using Android Studio and locate the "RetrofitClient.kt" file under "app/java/com/example/fakenewsapp/RetrofitClient.kt"
   2. Change the "BASE_URL" value to your full domain (for example, https://01-23-456-789.nip.io)
-  3. Create a new file under "Gradle Scripts" and name it "local.properties". Add the variable below to set your SDK path using your user:
+  3. Create a new file under "Gradle Scripts" and name it "local.properties". Add the variable below to set your Android SDK path with your user:
      * `sdk.dir=C\:\\Users\\YOUR-USER\\AppData\\Local\\Android\\Sdk`
   4. Open the "File" tab and select "Sync Project with Gradle Files" to reload the project using the required dependencies and configurations
   5. Run the app to install and test it on the simulator or your own device connected via USB (the latter requires developer options turned on)
 
 ### RESTful Script for Model Improvement
 
-  1. Move the "Final_Dataset_English.csv" and "Final_dataset_portuguese.csv" files to the "Flask Cloud and Local RESTful Script" folder
-  2. Download the distilBERT models from [here](https://drive.google.com/file/d/1UNbhCPbJk_-mmc-nsf9Ag0a7UIIBaSnu/view?usp=sharing) and [here](https://drive.google.com/file/d/1mnFrT7LpFtNkxb1SoiuReGGTNmOUMnTJ/view?usp=sharing), and move them to the "Flask Cloud and Local RESTful Script" folder
-  3. Open the terminal in Anaconda, set the path to the "Flask Cloud and Local RESTful Script" folder, and create the environment by running the following command:
+  1. The datasets were pushed via Git LFS given their size. This requires an initial step for data retrieval:
+     * Open CMD in the main folder where the datasets are located
+     * Fetch all the pointer files from the LFS remote server by running `git lfs fetch`
+     * Replace the resulting pointer files with the actual datasets by running `git lfs checkout`
+     * Notice how the size of each dataset has increased considerably after these steps
+  2. Move the "Final_Dataset_English.csv" and "Final_dataset_portuguese.csv" files to the "Flask Cloud and Local RESTful Script" folder
+  3. Download the distilBERT models from [here](https://drive.google.com/file/d/1UNbhCPbJk_-mmc-nsf9Ag0a7UIIBaSnu/view?usp=sharing) and [here](https://drive.google.com/file/d/1mnFrT7LpFtNkxb1SoiuReGGTNmOUMnTJ/view?usp=sharing), and move them to the "Flask Cloud and Local RESTful Script" folder
+  4. Open the terminal in Anaconda, set the path to the "Flask Cloud and Local RESTful Script" folder, and create the environment by running the following command:
      * `conda env create -f environment.yml`
-  4. Once the "news-feedback-fetch" environment is created, open VS Code using the Anaconda launcher with the new environment
-  5. Open the "Flask Cloud and Local RESTful Script" folder and modify the "data_fetch_websocket.py" script as follows:
+  5. Once the "news-feedback-fetch" environment is created, open VS Code using the Anaconda launcher with the new environment
+  6. Open the "Flask Cloud and Local RESTful Script" folder and modify the "data_fetch_websocket.py" script as follows:
      * Change the IP address in the "send_model_to_ec2" function to your Public IPv4 DNS
      * Change the IP address in the "fetch_user_feedback_data" function to your full domain (for example, https://01-23-456-789.nip.io)
-  6. Run the "data_fetch_websocket.py" script using your Anaconda environment. Make sure "news-feedback-fetch:conda" is shown in the lower right corner of VS Code to use the environment
-  7. The script will start fetching the feedback data from the Flask app, with an interval of 30 seconds between each GET request
-  8. Test the feedback functionality by reporting news articles that are incorrectly predicted by the models
+  7. Run the "data_fetch_websocket.py" script using your Anaconda environment. Make sure "news-feedback-fetch:conda" is shown in the lower right corner of VS Code to use the environment
+  8. The script will start fetching the feedback data from the Flask app, with an interval of 30 seconds between each GET request
+  9. Test the feedback functionality by reporting news articles that are incorrectly predicted by the models
       * The script requires at least two different news articles to improve the models. If only one article is received, the feedback data is discarded
       * Reporting many similar news articles can trigger the similarity check of the script, which converts them into a single news article
       * This is done to group similar topics or events together, as a way to reduce model bias and decide between contradicting stances
-  9. Once the program finishes improving the models with the feedback data, connect to your EC2 instance. Run `ls` to check the new and improved tflite files received over SFTP and SSH
-  10. The news articles reported to the Flask App should now return the right predictions, according to the feedback data sent earlier
+  10. Once the program finishes improving the models with the feedback data, connect to your EC2 instance. Run `ls` to check the new and improved TFLite files received over SFTP and SSH
+  11. The news articles reported to the Flask App should now return the right predictions, according to the feedback data sent earlier
       * Be aware that the Transfer Learning technique used to improve the models still keeps all the knowledge acquired during the initial training phase with the datasets
       * The most significant aspect in this phase is the complexity of the data patterns, which varies based on how much the reported news articles differ from the ones in the initial datasets
       * As a consequence, reporting just a few news articles might not be enough to improve the predictions of the new models
