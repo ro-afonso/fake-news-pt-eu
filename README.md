@@ -1,4 +1,4 @@
-# fake-news-pt-eu
+# video-test
 
 This project was developed to contribute to the fight against fake news, with a stronger focus on the European Portuguese language. If you find this repository useful, please cite it in your work, alongside [our paper](https://doi.org/10.1109/TLA.2024.10472958).
 
@@ -8,7 +8,7 @@ The diagram below depicts the project's pipeline, with the two English and Europ
 
 ## European Portuguese Dataset
 
-Based on the conducted search, this is the first dataset with fake and real news in European Portuguese publicly available.
+Based on the conducted search, this is the first publicly available dataset with fake and real news in European Portuguese.
 
 It contains over 60 000 rows with news articles and statements extracted through Web Scraping. The web scrapers were automated by resorting to Beautiful Soup and Selenium.
 
@@ -54,11 +54,13 @@ The models are fine-tuned with the feedback data and then sent over to the cloud
 * [Android Studio](https://developer.android.com/studio)
 * [GitHub Desktop](https://github.com/apps/desktop)
 
-## System Setup
+## System Setup with Video Demonstration
 
-Clone the repository with GitHub Desktop and follow the steps below to set up and deploy the system:
+Follow the steps below to set up and deploy the system. The video demos visually guide you through each step, highlighting the system's features and functionality:
 
 ### AWS EC2 with Containerised Flask App
+
+https://github.com/user-attachments/assets/486c7a32-34f5-4e0d-a1b7-e82f711c0b84
 
   1. After creating your AWS account, navigate to the EC2 dashboard
   2. Create a pem file to use as the key pair, name it "fake-news-demo.pem", and save it in the "Flask Cloud and Local RESTful Script" local folder
@@ -120,20 +122,24 @@ Clone the repository with GitHub Desktop and follow the steps below to set up an
 
 ### Chrome Extension
 
+https://github.com/user-attachments/assets/06c7f787-3ee0-4fb7-8ce6-d8b87a749463
+
   1. Open the "script.js" file located inside the "News Detector Chrome Extension" folder and change the IP address to your full domain (for example, https://01-23-456-789.nip.io).
   2. Access extension settings in Google Chrome, click on "Load Unpacked" and select the "News Detector Chrome Extension" folder to load it
   3. Fill in the input fields of the Chrome extension and experiment with both prediction and feedback modes
 
 ### Android App
 
+https://github.com/user-attachments/assets/6a36e561-700d-4063-af22-45857c1cd004
+
   1. Open the "Fake News Android App" folder using Android Studio and locate the "RetrofitClient.kt" file under "app/java/com/example/fakenewsapp/RetrofitClient.kt"
-  2. Change the "BASE_URL" value to your full domain (for example, https://01-23-456-789.nip.io)
-  3. Create a new file under "Gradle Scripts" and name it "local.properties". Add the variable below to set your Android SDK path with your user:
-     * `sdk.dir=C\:\\Users\\YOUR-USER\\AppData\\Local\\Android\\Sdk`
-  4. Open the "File" tab and select "Sync Project with Gradle Files" to reload the project using the required dependencies and configurations
-  5. Run the app to install and test it on the simulator or your own device connected via USB (the latter requires developer options turned on)
+  2. Open the "local.properties" file under "Gradle Scripts" and adapt the Android SDK path with your user
+  3. Change the "BASE_URL" value to your full domain (for example, https://01-23-456-789.nip.io)
+  4. Run the app to install and test it on the simulator or your own device connected via USB (the latter requires developer options turned on)
 
 ### RESTful Script for Model Improvement
+
+https://github.com/user-attachments/assets/72efec68-350b-4332-bd56-dfca6a04851a
 
   1. The datasets were pushed via Git LFS given their size. This requires an initial step for data retrieval:
      * Open CMD in the main folder where the datasets are located
