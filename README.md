@@ -1,4 +1,4 @@
-# video-test
+# fake-news-pt-eu
 
 This project was developed to contribute to the fight against fake news, with a stronger focus on the European Portuguese language. If you find this repository useful, please cite it in your work, alongside [our paper](https://doi.org/10.1109/TLA.2024.10472958).
 
@@ -49,7 +49,7 @@ The models are fine-tuned with the feedback data and then sent over to the cloud
 ## Requirements
 
 * [VS Code](https://code.visualstudio.com/) or a similar code editor
-* [AWS Account](https://aws.amazon.com/free) (1 Year Free Tier)
+* [AWS Account](https://aws.amazon.com/free) (1-Year Free Tier)
 * [Anaconda](https://www.anaconda.com/download/success)
 * [Android Studio](https://developer.android.com/studio)
 * [GitHub Desktop](https://github.com/apps/desktop)
@@ -60,7 +60,7 @@ Follow the steps below to set up and deploy the system. The video demos visually
 
 ### AWS EC2 with Containerised Flask App
 
-https://github.com/user-attachments/assets/486c7a32-34f5-4e0d-a1b7-e82f711c0b84
+https://github.com/user-attachments/assets/e94c6cf4-1e21-40ef-8ddc-a91a11e5f4fb
 
   1. After creating your AWS account, navigate to the EC2 dashboard
   2. Create a pem file to use as the key pair, name it "fake-news-demo.pem", and save it in the "Flask Cloud and Local RESTful Script" local folder
